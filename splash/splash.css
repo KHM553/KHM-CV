@@ -1,0 +1,413 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Tajawal:wght@500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Changa:wght@700&display=swap');
+
+.splash-container {
+    position: fixed;
+    inset: 0;
+    background: #0f172a;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.splash-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.welcome-text {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: welcome 0.5s ease forwards 0.8s; /* تأخير ظهور النص */
+}
+
+.welcome-text .text {
+    color: #fff;
+    font-size: 2.8rem; /* حجم خط أكبر */
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    background: linear-gradient(45deg, #9708F4, #5E14E4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.loader {
+    width: 240px; /* تعديل الحجم */
+    height: 240px;
+    animation: appear 0.5s ease forwards;
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.loader-ring {
+    animation: spinner 2s linear infinite;
+}
+
+.loader-ring-a {
+    stroke: #9708F4;
+    opacity: 0.9;
+}
+
+.loader-ring-b {
+    animation-name: spinner;
+    stroke: #5E14E4;
+    opacity: 0.8;
+    animation-delay: 0.2s;
+}
+
+.loader-ring-c {
+    animation-name: spinner;
+    stroke: #9708F4;
+    opacity: 0.7;
+    animation-delay: 0.4s;
+}
+
+.loader-ring-d {
+    animation-name: spinner;
+    stroke: #5E14E4;
+    opacity: 0.6;
+    animation-delay: 0.6s;
+}
+
+.logo-wrapper {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: float 3s ease-in-out infinite;
+}
+
+.text-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.text-line {
+    overflow: hidden;
+    padding: 0.5rem 0;
+}
+
+.text {
+    display: block;
+    transform: translateY(100%);
+    font-family: 'Tajawal', sans-serif;
+}
+
+.text.main {
+    font-family: 'Changa', sans-serif;
+    font-size: 5rem;
+    font-weight: 700;
+    background: linear-gradient(45deg, #9708F4 30%, #5E14E4 70%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 3px 3px 6px rgba(151, 8, 244, 0.3);
+    transform: translateY(100%);
+    animation: slideUp 0.8s ease forwards 0.5s, glowing 2s ease-in-out infinite;
+    letter-spacing: -1px;
+}
+
+.text.sub {
+    font-family: 'IBM Plex Sans Arabic', sans-serif;
+    font-size: 2rem;
+    font-weight: 500;
+    color: #818cf8;
+    transform: translateY(100%);
+    animation: slideUp 0.8s ease forwards 0.7s;
+    opacity: 0.9;
+}
+
+.text.name {
+    font-family: 'Cairo', sans-serif;
+    font-size: 3.5rem;
+    font-weight: 900;
+    background: linear-gradient(to right, #9708F4, #5E14E4, #9708F4);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 200% auto;
+    transform: translateY(100%);
+    animation: slideUp 0.8s ease forwards 0.9s, shine 3s linear infinite;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes ringA {
+    from, 4% {
+        stroke-dasharray: 0 660;
+        stroke-width: 20;
+        stroke-dashoffset: -330;
+    }
+
+    12% {
+        stroke-dasharray: 60 600;
+        stroke-width: 30;
+        stroke-dashoffset: -335;
+    }
+
+    32% {
+        stroke-dasharray: 60 600;
+        stroke-width: 30;
+        stroke-dashoffset: -595;
+    }
+
+    40%, 54% {
+        stroke-dasharray: 0 660;
+        stroke-width: 20;
+        stroke-dashoffset: -660;
+    }
+
+    62% {
+        stroke-dasharray: 60 600;
+        stroke-width: 30;
+        stroke-dashoffset: -665;
+    }
+
+    82% {
+        stroke-dasharray: 60 600;
+        stroke-width: 30;
+        stroke-dashoffset: -925;
+    }
+
+    90%, to {
+        stroke-dasharray: 0 660;
+        stroke-width: 20;
+        stroke-dashoffset: -990;
+    }
+}
+
+@keyframes ringB {
+    from, 12% {
+        stroke-dasharray: 0 220;
+        stroke-width: 20;
+        stroke-dashoffset: -110;
+    }
+
+    20% {
+        stroke-dasharray: 20 200;
+        stroke-width: 30;
+        stroke-dashoffset: -115;
+    }
+
+    40% {
+        stroke-dasharray: 20 200;
+        stroke-width: 30;
+        stroke-dashoffset: -195;
+    }
+
+    48%, 62% {
+        stroke-dasharray: 0 220;
+        stroke-width: 20;
+        stroke-dashoffset: -220;
+    }
+
+    70% {
+        stroke-dasharray: 20 200;
+        stroke-width: 30;
+        stroke-dashoffset: -225;
+    }
+
+    90% {
+        stroke-dasharray: 20 200;
+        stroke-width: 30;
+        stroke-dashoffset: -305;
+    }
+
+    98%, to {
+        stroke-dasharray: 0 220;
+        stroke-width: 20;
+        stroke-dashoffset: -330;
+    }
+}
+
+@keyframes ringC {
+    from {
+        stroke-dasharray: 0 440;
+        stroke-width: 20;
+        stroke-dashoffset: 0;
+    }
+
+    8% {
+        stroke-dasharray: 40 400;
+        stroke-width: 30;
+        stroke-dashoffset: -5;
+    }
+
+    28% {
+        stroke-dasharray: 40 400;
+        stroke-width: 30;
+        stroke-dashoffset: -175;
+    }
+
+    36%, 58% {
+        stroke-dasharray: 0 440;
+        stroke-width: 20;
+        stroke-dashoffset: -220;
+    }
+
+    66% {
+        stroke-dasharray: 40 400;
+        stroke-width: 30;
+        stroke-dashoffset: -225;
+    }
+
+    86% {
+        stroke-dasharray: 40 400;
+        stroke-width: 30;
+        stroke-dashoffset: -395;
+    }
+
+    94%, to {
+        stroke-dasharray: 0 440;
+        stroke-width: 20;
+        stroke-dashoffset: -440;
+    }
+}
+
+@keyframes ringD {
+    from, 8% {
+        stroke-dasharray: 0 440;
+        stroke-width: 20;
+        stroke-dashoffset: 0;
+    }
+
+    16% {
+        stroke-dasharray: 40 400;
+        stroke-width: 30;
+        stroke-dashoffset: -5;
+    }
+
+    36% {
+        stroke-dasharray: 40 400;
+        stroke-width: 30;
+        stroke-dashoffset: -175;
+    }
+
+    44%, 50% {
+        stroke-dasharray: 0 440;
+        stroke-width: 20;
+        stroke-dashoffset: -220;
+    }
+
+    58% {
+        stroke-dasharray: 40 400;
+        stroke-width: 30;
+        stroke-dashoffset: -225;
+    }
+
+    78% {
+        stroke-dasharray: 40 400;
+        stroke-width: 30;
+        stroke-dashoffset: -395;
+    }
+
+    86%, to {
+        stroke-dasharray: 0 440;
+        stroke-width: 20;
+        stroke-dashoffset: -440;
+    }
+}
+
+@keyframes fadeInScale {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes appear {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes welcome {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes spinner {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes slideUp {
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes glowing {
+    0%, 100% {
+        text-shadow: 0 0 15px rgba(151, 8, 244, 0.4);
+    }
+    50% {
+        text-shadow: 0 0 25px rgba(151, 8, 244, 0.6);
+    }
+}
+
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
+}
+
+/* إضافة تحسينات للأجهزة المحمولة */
+@media (max-width: 768px) {
+    .text.main {
+        font-size: 3.5rem;
+    }
+    
+    .text.sub {
+        font-size: 1.5rem;
+    }
+    
+    .text.name {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .text.main {
+        font-size: 2.8rem;
+    }
+    
+    .text.sub {
+        font-size: 1.2rem;
+    }
+    
+    .text.name {
+        font-size: 2rem;
+    }
+}
