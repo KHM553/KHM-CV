@@ -24,31 +24,32 @@ function updateSkillProgress() {
 const contactForm = document.querySelector('.contact-form form');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-    
-    const name = this.querySelector('input[type="text"]').value;
-    const email = this.querySelector('input[type="email"]').value;
-    const message = this.querySelector('textarea').value;
-    
-    if (name.length < 3) {
-        showAlert('الرجاء إدخال اسم صحيح');
-        return;
-    }
-    
-    if (!isValidEmail(email)) {
-        showAlert('الرجاء إدخال بريد إلكتروني صحيح');
-        return;
-    }
-    
-    if (message.length < 10) {
-        showAlert('الرجاء إدخال رسالة أطول');
-        return;
-    }
-    
-    // Here you can add your form submission logic
-    showAlert('تم إرسال الرسالة بنجاح!', 'success');
-    this.reset();
-});
+        e.preventDefault();
+        
+        const name = this.querySelector('input[type="text"]').value;
+        const email = this.querySelector('input[type="email"]').value;
+        const message = this.querySelector('textarea').value;
+        
+        if (name.length < 3) {
+            showAlert('الرجاء إدخال اسم صحيح');
+            return;
+        }
+        
+        if (!isValidEmail(email)) {
+            showAlert('الرجاء إدخال بريد إلكتروني صحيح');
+            return;
+        }
+        
+        if (message.length < 10) {
+            showAlert('الرجاء إدخال رسالة أطول');
+            return;
+        }
+        
+        // Here you can add your form submission logic
+        showAlert('تم إرسال الرسالة بنجاح!', 'success');
+        this.reset();
+    });
+}
 
 function isValidEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -717,3 +718,50 @@ document.addEventListener('DOMContentLoaded', () => {
     initProjectsSystem();
     mobileOptimizations();
 });
+
+// تحديث الرابط النشط عند التمرير
+function updateActiveSection() {
+    const sections = document.querySelectorAll('section');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    let currentSection = '';
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 100;
+        const sectionBottom = sectionTop + section.offsetHeight;
+        
+        if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+            currentSection = section.getAttribute('id');
+        }
+    });
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSection}`) {
+            link.classList.add('active');
+        }
+    });
+}
+
+// تحديث الهيدر عند التمرير
+window.addEventListener('scroll', () => {
+    updateActiveSection();
+    
+    const header = document.querySelector('header');
+    if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+
+// تحديث الرابط النشط عند النقر
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+        this.classList.add('active');
+    });
+});
+
+// تحديث الرابط النشط عند تحميل الصفحة
+window.addEventListener('load', updateActiveSection);

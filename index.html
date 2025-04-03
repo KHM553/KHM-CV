@@ -29,16 +29,46 @@
 
     <header>
         <div class="header-container">
-            <div class="brand-logo"> خباب سيف </div>
+            <a href="#home" class="brand-logo">
+                <span>خباب سيف</span>
+            </a>
             <nav>
-                <ul>
-                    <li><a href="#home"><i class="fas fa-home"></i> الرئيسية</a></li>
-                    <li><a href="#about"><i class="fas fa-user"></i> عني</a></li>
-                    <li><a href="#projects"><i class="fas fa-code"></i> مشاريعي</a></li>
-                    <li><a href="#contact"><i class="fas fa-envelope"></i> تواصل معي</a></li>
-                    <!-- حذف زر اللغة -->
+                <ul class="nav-links">
+                    <li>
+                        <a href="#home" class="nav-link active">
+                            <i class="fas fa-home"></i>
+                            <span>الرئيسية</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#about" class="nav-link">
+                            <i class="fas fa-user"></i>
+                            <span>عني</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#projects" class="nav-link">
+                            <i class="fas fa-code"></i>
+                            <span>مشاريعي</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#contact" class="nav-link">
+                            <i class="fas fa-envelope"></i>
+                            <span>تواصل معي</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="assistant.html" class="nav-link special">
+                            <i class="fas fa-robot"></i>
+                            <span>مساعد خباب</span>
+                        </a>
+                    </li>
                 </ul>
             </nav>
+            <button class="mobile-menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </header>
 
@@ -139,96 +169,63 @@
     <section id="skills" class="skills">
         <h2>مهاراتي <span class="accent">.</span></h2>
         <div class="skills-container">
-            <div class="skill-category">
-                <h3>المهارات الشخصية والتقنية</h3>
-                <div class="skills-grid">
-                    <div class="skill-item" data-progress="95">
-                        <div class="skill-header">
-                            <div class="skill-icon">
-                                <i class="fas fa-comments"></i>
-                            </div>
-                            <div class="skill-info">
-                                <h4>مهارة التحدث</h4>
-                                <span class="percentage">95%</span>
-                            </div>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress"></div>
+            <div class="skills-grid">
+                <div class="skill-item">
+                    <i class="fas fa-comments"></i>
+                    <h4>مهارة التحدث</h4>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 95%">
+                            <span>95%</span>
                         </div>
                     </div>
+                </div>
 
-                    <div class="skill-item" data-progress="90">
-                        <div class="skill-header">
-                            <div class="skill-icon">
-                                <i class="fas fa-laptop"></i>
-                            </div>
-                            <div class="skill-info">
-                                <h4>استخدام الحاسب</h4>
-                                <span class="percentage">90%</span>
-                            </div>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress"></div>
+                <div class="skill-item">
+                    <i class="fas fa-laptop"></i>
+                    <h4>استخدام الحاسب</h4>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 90%">
+                            <span>90%</span>
                         </div>
                     </div>
+                </div>
 
-                    <div class="skill-item" data-progress="85">
-                        <div class="skill-header">
-                            <div class="skill-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <div class="skill-info">
-                                <h4>العمل الجماعي</h4>
-                                <span class="percentage">85%</span>
-                            </div>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress"></div>
+                <div class="skill-item">
+                    <i class="fas fa-users"></i>
+                    <h4>العمل الجماعي</h4>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 85%">
+                            <span>85%</span>
                         </div>
                     </div>
+                </div>
 
-                    <div class="skill-item" data-progress="88">
-                        <div class="skill-header">
-                            <div class="skill-icon">
-                                <i class="fas fa-search"></i>
-                            </div>
-                            <div class="skill-info">
-                                <h4>مهارة البحث</h4>
-                                <span class="percentage">88%</span>
-                            </div>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress"></div>
+                <div class="skill-item">
+                    <i class="fas fa-search"></i>
+                    <h4>مهارة البحث</h4>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 88%">
+                            <span>88%</span>
                         </div>
                     </div>
+                </div>
 
-                    <div class="skill-item" data-progress="92">
-                        <div class="skill-header">
-                            <div class="skill-icon">
-                                <i class="fab fa-google"></i>
-                            </div>
-                            <div class="skill-info">
-                                <h4>منتجات قوقل</h4>
-                                <span class="percentage">92%</span>
-                            </div>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress"></div>
+                <div class="skill-item">
+                    <i class="fab fa-google"></i>
+                    <h4>منتجات قوقل</h4>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 92%">
+                            <span>92%</span>
                         </div>
                     </div>
+                </div>
 
-                    <div class="skill-item" data-progress="87">
-                        <div class="skill-header">
-                            <div class="skill-icon">
-                                <i class="fas fa-paint-brush"></i>
-                            </div>
-                            <div class="skill-info">
-                                <h4>التصميم</h4>
-                                <span class="percentage">87%</span>
-                            </div>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress"></div>
+                <div class="skill-item">
+                    <i class="fas fa-paint-brush"></i>
+                    <h4>التصميم</h4>
+                    <div class="skill-bar">
+                        <div class="skill-level" style="width: 87%">
+                            <span>87%</span>
                         </div>
                     </div>
                 </div>
@@ -356,16 +353,9 @@
 
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
-        AOS.init(); // Initialize AOS library
+        AOS.init();
     </script>
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" onerror="console.error('Failed to load particles.js');"></script>
-    <script>
-        // Set progress bar widths based on data-progress attribute
-        document.querySelectorAll('.skill-item').forEach(skill => {
-            const progress = skill.getAttribute('data-progress');
-            skill.querySelector('.progress').style.width = progress + '%';
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
