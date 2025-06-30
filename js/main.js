@@ -7,6 +7,225 @@ const observer = new IntersectionObserver((entries) => {
     });
 }, { threshold: 0.1 });
 
+// Certificate Modals Functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Get all partner cards
+    const partnerCards = document.querySelectorAll('.partner-card');
+    console.log(`Found ${partnerCards.length} partner cards`);
+    
+    // Add click event to each partner card
+    partnerCards.forEach(card => {
+        // Get the certificate ID from data attribute
+        const certificateId = card.getAttribute('data-certificate');
+        
+        // Add has-certificate class to cards with data-certificate attribute
+        if (certificateId) {
+            card.classList.add('has-certificate');
+            console.log(`Card with certificate ID: ${certificateId} marked as has-certificate`);
+        }
+        
+        card.addEventListener('click', function() {
+            // Get the certificate ID from data attribute
+            const certificateId = this.getAttribute('data-certificate');
+            
+            if (!certificateId) {
+                console.log('This card does not have a certificate ID');
+                return;
+            }
+            
+            // Find the corresponding modal
+            const modal = document.getElementById(`${certificateId}-certificate`);
+            
+            // Open the modal
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+                
+                // Log for debugging
+                console.log(`Opening certificate modal: ${certificateId}`);
+            } else {
+                console.error(`Certificate modal not found for ID: ${certificateId}-certificate`);
+            }
+        });
+    });
+    
+    // Certificate view buttons now link directly to certificate pages
+    console.log('Certificate view buttons now link to separate pages');
+    
+    // Close modal when clicking the close button
+    const closeButtons = document.querySelectorAll('.certificate-modal-close');
+    console.log(`Found ${closeButtons.length} close buttons`);
+    closeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Find the parent modal
+            const modal = this.closest('.certificate-modal');
+            
+            // Close the modal
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+                console.log('Modal closed via close button');
+            }
+        });
+    });
+    
+    // تهيئة سلايدر الشهادات
+    function initCertificateSliders() {
+        const sliders = document.querySelectorAll('.certificate-modal-slider');
+        
+        sliders.forEach(slider => {
+            const container = slider.querySelector('.certificate-slider-container');
+            const slides = slider.querySelectorAll('.certificate-slide');
+            const dots = slider.querySelectorAll('.slider-dot');
+            const prevBtn = slider.querySelector('.slider-prev');
+            const nextBtn = slider.querySelector('.slider-next');
+            let currentSlide = 0;
+            const slideCount = slides.length;
+            let autoSlideInterval;
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            // تحديث موضع السلايدر (من اليمين إلى اليسار للغة العربية)
+            function updateSliderPosition() {
+                container.style.transform = `translateX(${currentSlide * -100}%)`;
+                
+                // تحديث النقاط
+                dots.forEach((dot, index) => {
+                    if (index === currentSlide) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
+            
+            // الانتقال للسلايد التالي
+            function nextSlide() {
+                currentSlide = (currentSlide + 1) % slideCount;
+                updateSliderPosition();
+            }
+            
+            // الانتقال للسلايد السابق
+            function prevSlide() {
+                currentSlide = (currentSlide - 1 + slideCount) % slideCount;
+                updateSliderPosition();
+            }
+            
+            // بدء التمرير التلقائي
+            function startAutoSlide() {
+                stopAutoSlide(); // إيقاف أي تمرير تلقائي سابق
+                autoSlideInterval = setInterval(nextSlide, 5000); // تغيير السلايد كل 5 ثواني
+            }
+            
+            // إيقاف التمرير التلقائي
+            function stopAutoSlide() {
+                if (autoSlideInterval) {
+                    clearInterval(autoSlideInterval);
+                }
+            }
+            
+            // معالجة بداية اللمس
+            function handleTouchStart(e) {
+                touchStartX = e.touches[0].clientX;
+                stopAutoSlide(); // إيقاف التمرير التلقائي عند اللمس
+            }
+            
+            // معالجة نهاية اللمس
+            function handleTouchEnd(e) {
+                touchEndX = e.changedTouches[0].clientX;
+                handleSwipe();
+                startAutoSlide(); // إعادة تشغيل التمرير التلقائي بعد اللمس
+            }
+            
+            // معالجة السحب
+            function handleSwipe() {
+                const swipeThreshold = 50; // الحد الأدنى للمسافة للاعتبار كسحب
+                const swipeDistance = touchEndX - touchStartX;
+                
+                if (swipeDistance < -swipeThreshold) {
+                    // سحب لليسار (التالي في العربية)
+                    prevSlide();
+                } else if (swipeDistance > swipeThreshold) {
+                    // سحب لليمين (السابق في العربية)
+                    nextSlide();
+                }
+            }
+            
+            // إضافة مستمعي الأحداث
+            if (prevBtn) prevBtn.addEventListener('click', () => {
+                prevSlide();
+                stopAutoSlide();
+                startAutoSlide(); // إعادة تشغيل المؤقت بعد النقر
+            });
+            
+            if (nextBtn) nextBtn.addEventListener('click', () => {
+                nextSlide();
+                stopAutoSlide();
+                startAutoSlide(); // إعادة تشغيل المؤقت بعد النقر
+            });
+            
+            // إضافة مستمعي الأحداث للنقاط
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    currentSlide = index;
+                    updateSliderPosition();
+                    stopAutoSlide();
+                    startAutoSlide(); // إعادة تشغيل المؤقت بعد النقر
+                });
+            });
+            
+            // إضافة مستمعي أحداث اللمس
+            container.addEventListener('touchstart', handleTouchStart, false);
+            container.addEventListener('touchend', handleTouchEnd, false);
+            
+            // إيقاف التمرير التلقائي عند تحويم الماوس
+            slider.addEventListener('mouseenter', stopAutoSlide);
+            slider.addEventListener('mouseleave', startAutoSlide);
+            
+            // تهيئة الموضع الأولي وبدء التمرير التلقائي
+            updateSliderPosition();
+            startAutoSlide();
+        });
+    }
+    
+    // استدعاء دالة تهيئة السلايدر عند فتح النافذة المنبثقة
+    document.querySelectorAll('.certificate-view-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            // تأخير قليل لضمان فتح النافذة المنبثقة أولاً
+            setTimeout(initCertificateSliders, 100);
+        });
+    });
+    
+    // استدعاء دالة تهيئة السلايدر
+    initCertificateSliders();
+    
+    // Close modal when clicking outside the content
+    const modals = document.querySelectorAll('.certificate-modal');
+    console.log(`Found ${modals.length} certificate modals`);
+    modals.forEach(modal => {
+        modal.addEventListener('click', function(e) {
+            // Check if the click is outside the modal content
+            if (e.target === this) {
+                this.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+                console.log('Modal closed via outside click');
+            }
+        });
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            const activeModal = document.querySelector('.certificate-modal.active');
+            if (activeModal) {
+                activeModal.classList.remove('active');
+                document.body.style.overflow = ''; // Restore scrolling
+                console.log('Modal closed via Escape key');
+            }
+        }
+    });
+});
+
 document.querySelectorAll('.project-card, .skill-item, .about-content').forEach((el) => {
     el.classList.add('hidden');
     observer.observe(el);

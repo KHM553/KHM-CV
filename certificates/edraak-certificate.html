@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شهادة إدراك للأمن السيبراني - خباب سيف</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/certificate.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="certificate-page">
+        <div class="certificate-container">
+            <div class="certificate-header">
+                <h1>شهادة إدراك للأمن السيبراني</h1>
+                <p>مجموعة شهادات في الأمن السيبراني من جامعة الأميرة نورة في الأردن</p>
+            </div>
+            
+            <div class="certificate-gallery">
+                <div class="certificate-item">
+                    <img src="https://www2.0zz0.com/2025/06/30/12/916564908.jpg" alt="Edraak Certificate 1" onclick="openModal(this.src)">
+                    <p>الشهادة الأولى</p>
+                </div>
+                <div class="certificate-item">
+                    <img src="https://www2.0zz0.com/2025/06/30/12/916564908.jpg" alt="Edraak Certificate 2" onclick="openModal(this.src)">
+                    <p>الشهادة الثانية</p>
+                </div>
+                <div class="certificate-item">
+                    <img src="https://www2.0zz0.com/2025/06/30/12/916564908.jpg" alt="Edraak Certificate 3" onclick="openModal(this.src)">
+                    <p>الشهادة الثالثة</p>
+                </div>
+            </div>
+            
+            <div class="certificate-details">
+                <h2>تفاصيل الشهادة</h2>
+                <p>حصلت على هذه الشهادة في مجال الأمن السيبراني من جامعة الأميرة نورة في الأردن عبر منصة إدراك. تغطي هذه الشهادة أساسيات الأمن السيبراني وحماية البيانات والشبكات.</p>
+                
+                <div class="certificate-meta">
+                    <div class="certificate-meta-item">
+                        <i class="far fa-calendar-alt"></i>
+                        <span>تاريخ الإصدار: مايو 2025</span>
+                    </div>
+                    <div class="certificate-meta-item">
+                        <i class="fas fa-award"></i>
+                        <span>التقدير: ممتاز</span>
+                    </div>
+                    <div class="certificate-meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span>المدة: 2 أشهر</span>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="../index.html#certificate-gallery" class="back-button">
+                <i class="fas fa-arrow-right"></i> العودة إلى معرض الشهادات
+            </a>
+        </div>
+    </div>
+    
+    <!-- Modal for image preview -->
+    <div id="imageModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+    
+    <script>
+        // Modal functionality
+        function openModal(src) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.style.display = "block";
+            modalImg.src = src;
+        }
+        
+        function closeModal() {
+            document.getElementById('imageModal').style.display = "none";
+        }
+        
+        // Close modal when clicking outside the image
+        window.onclick = function(event) {
+            const modal = document.getElementById('imageModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
