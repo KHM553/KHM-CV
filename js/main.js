@@ -298,7 +298,7 @@ window.addEventListener('scroll', () => {
 
 // Mobile Menu
 const mobileMenu = document.querySelector('.mobile-menu');
-const menuToggle = document.querySelector('.mobile-menu-toggle');
+const menuToggles = document.querySelectorAll('.mobile-menu-toggle');
 const closeMenu = document.querySelector('.close-menu');
 const menuLinks = document.querySelectorAll('.mobile-menu a');
 
@@ -307,7 +307,7 @@ function toggleMenu() {
     document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
 }
 
-menuToggle?.addEventListener('click', toggleMenu);
+menuToggles.forEach(btn => btn?.addEventListener('click', toggleMenu));
 closeMenu?.addEventListener('click', toggleMenu);
 
 // إغلاق القائمة عند النقر على أي رابط
@@ -325,9 +325,10 @@ menuLinks.forEach(link => {
 
 // إغلاق القائمة عند النقر خارجها
 document.addEventListener('click', (e) => {
+    const clickedToggle = Array.from(menuToggles).some(t => t.contains(e.target));
     if (mobileMenu.classList.contains('active') && 
         !mobileMenu.contains(e.target) && 
-        !menuToggle.contains(e.target)) {
+        !clickedToggle) {
         toggleMenu();
     }
 });
